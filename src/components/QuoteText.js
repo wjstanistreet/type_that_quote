@@ -10,7 +10,7 @@ const QuoteText = ({sentence, author}) => {
     const [wordCount, setWordCount] = useState(0);
 
     // Stop watch
-    const [isStarted, setIsStarted] = useState(false);
+    const [isStarted, setIsStarted] = useState(null);
     const [time, setTime] = useState(0);
 
     useEffect(() => {
@@ -25,6 +25,7 @@ const QuoteText = ({sentence, author}) => {
             clearInterval(interval);
         }
 
+        return () => clearInterval(interval);
     }, [isStarted])
     
     
@@ -39,16 +40,17 @@ const QuoteText = ({sentence, author}) => {
 
     const processUserText = (event) => {
         let input = event.target.value;
-        if (isStarted === false) {
+        if (isStarted === null) {
             setIsStarted(true);
             console.log(isStarted);
             // console.log(isStarted);
         } 
         
-        // if (isStarted) {
-        checkCorrect(input);
-        // }
-        
+        if (isStarted) {
+            checkCorrect(input);
+        } else {
+            console.log(isStarted);
+        }
     };
 
     const checkCorrect = (input) => {
@@ -94,9 +96,9 @@ const QuoteText = ({sentence, author}) => {
                 {sentence ? <p>"{quoteSpan}" - {author}</p> : <p>Loading quote...</p>}
             </div>
             <p>{}</p>
-            <textarea placeholder="Click here to start" onClick={startCountdown} onChange={!isStarted ? (event) => processUserText(event) : () => {}}>
+            <textarea placeholder="Click here to start" onClick={startCountdown} onChange={(event) => processUserText(event)}>
             </textarea>
-            <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]} ms</span>
+            {isStarted !== null ? <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]} ms</span> : <></>}
         </>
     );
 }
