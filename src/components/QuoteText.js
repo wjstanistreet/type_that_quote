@@ -4,10 +4,24 @@ import './QuoteText.css'
 
 const QuoteText = ({sentence, author}) => {
 
+    const [words, setWords] = useState("");
+    const [quoteChars, setQuoteChars] = useState("");
+    const [quoteSpan, setQuoteSpan] = useState("");
+
+    useEffect(() => {
+        if (sentence) {
+        setWords(sentence.split(' '));
+        setQuoteChars(sentence.split(''));
+        setQuoteSpan(sentence.split('').map((char, index) => {
+            return(
+                <span key={index} className="default">{char}</span>
+                )
+            }));
+        }
+    }, [sentence])
+
     // Accuracy counters
     const [errors, setErrors] = useState(0);
-    const [words, setWords] = useState(sentence.split(' '));
-    const [wordCount, setWordCount] = useState(0);
 
     // Stop watch
     const [isStarted, setIsStarted] = useState(null);
@@ -28,28 +42,18 @@ const QuoteText = ({sentence, author}) => {
         return () => clearInterval(interval);
     }, [isStarted])
     
-    
-    
-    const quoteChars = sentence.split('');
-    const [quoteSpan, setQuoteSpan] = useState(sentence.split('').map((char, index) => {
-        return(
-            <span key={index} className="default">{char}</span>
-            )
-        }));
-    
 
     const processUserText = (event) => {
         let input = event.target.value;
         if (isStarted === null) {
             setIsStarted(true);
-            console.log(isStarted);
-            // console.log(isStarted);
+            
         } 
         
         if (isStarted) {
             checkCorrect(input);
         } else {
-            console.log(isStarted);
+            // console.log(isStarted);
         }
     };
 
@@ -57,8 +61,6 @@ const QuoteText = ({sentence, author}) => {
         const charArrayTyped = input.split('');
         const typedWords = input.split(' ');
         const charArray = [...quoteSpan];
-        
-        // setLettersTyped(lettersTyped + 1);
 
         const charSpan = []
         charArray.forEach((char, index) => {
@@ -81,19 +83,18 @@ const QuoteText = ({sentence, author}) => {
 
         setQuoteSpan(charSpan);
 
-        if (charArrayTyped.length === quoteChars.length) {
+        if (charArrayTyped.join("") === sentence) {
             setIsStarted(false);
         }
     };
 
     return(
         <>
-            <div className="quoteBox">
+            <div className="quote-box">
                 {sentence ? <p>"{quoteSpan}" - {author}</p> : <p>Loading quote...</p>}
             </div>
-            <p>{}</p>
-            <textarea disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" onChange={(event) => processUserText(event)}>
-            </textarea>
+            {sentence ? <textarea disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" onChange={(event) => processUserText(event)}>
+            </textarea> : <></>}
             {isStarted !== null ? <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]}s</span> : <></>}
             {isStarted === false ? 
             <div>

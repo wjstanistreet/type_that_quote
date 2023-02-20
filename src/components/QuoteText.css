@@ -1,3 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .default {
     color: black
 }
@@ -10,4 +19,40 @@
     background-color: red;
     opacity: 70%;
     color: white;
+}
+
+.page-container {
+    /* border: 2px solid greenyellow; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+h1 {
+    /* border: 2px solid black; */
+}
+
+.quote-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    
+}
+
+.quote-box {
+    /* border: 2px solid cyan; */
+}
+
+textarea {
+    border: 2px solid black;
+    border-radius: 0.5em;
+}
+
+.page{
+    height: 100%;
+    width: 100%;
 }

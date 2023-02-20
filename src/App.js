@@ -4,7 +4,7 @@ import TextContainer from './containers/TextContainer';
 function App() {
   return (
     <>
-      <TextContainer/>
+      <TextContainer className="page"/>
     </>
   );
 }

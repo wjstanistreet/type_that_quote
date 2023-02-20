@@ -4,33 +4,31 @@ import QuoteText from "../components/QuoteText";
 const TextContainer = () => {
 
     const [quote, setQuote] = useState("");
-    // const [sentence, setSentence] = useState("");
-    // const [author, setAuthor] = useState("");
+    const [sentence, setSentence] = useState("");
+    const [author, setAuthor] = useState("");
+
+    const [games, setGames] = useState(0);
 
     useEffect(() => {
-        const fetchQuote = async () => {
-            const response = await fetch("https://api.quotable.io/random");
-            const data = await response.json();
-            setQuote(data);
-            console.log(quote)
-        }
-        fetchQuote();
+        fetch("https://api.quotable.io/random")
+        .then(response => response.json())
+        .then((data) => {setQuote(data)})
     }, []);
 
-    // const setValues = async () => {
-    //     const quoteObj = await quote;
+    useEffect(() => {
+        if (quote) {
+            setSentence(quote.content);
+            setAuthor(quote.author);
+        }
+    }, [quote])
 
-    // }
-    
-    const sentence = "The greatest glory in living lies not in never falling, but in rising every time we fall.";
-    const author = "Nelson Mandela";
 
     return(
-        <div>
-            <h1>Type that quote!</h1>
-            
-            {quote ? <QuoteText sentence={sentence} author={author}/> : <p>Loading quote...</p>}
-
+        <div className="page-container">
+            <div className="quote-container">
+                <h1>Type that quote!</h1>
+                {quote ? <QuoteText sentence={sentence} author={author}/> : <p>Loading quote...</p>}
+            </div>
         </div>
     )
 }
