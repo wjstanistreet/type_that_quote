@@ -1,13 +1,33 @@
-import { useState } from "react";
+import userEvent from "@testing-library/user-event";
+import { useEffect, useState } from "react";
 import './QuoteText.css'
 
 const QuoteText = ({sentence, author}) => {
 
     // Accuracy counters
-    let errors = 0;
-    let lettersTyped = 0;
+    const [errors, setErrors] = useState(0);
+    const [lettersTyped, setLettersTyped] = useState(0);
+
+    // Stop watch
+    const [isStarted, setIsStarted] = useState(false);
+    const [time, setTime] = useState(0);
+
+    useEffect(() => {
+        let interval;
+        const checkRate = 100;
+        if (isStarted) {
+            interval = setInterval(() => {
+                setTime((prev) => prev + checkRate);
+            }, checkRate);
+        } else if (!isStarted) {
+            clearInterval(interval);
+        }
+
+    }, [isStarted])
+    
     
     const quoteChars = sentence.split('');
+    const words = sentence.split(' ');
     
     const [quoteSpan, setQuoteSpan] = useState(sentence.split('').map((char, index) => {
         return(
@@ -18,15 +38,23 @@ const QuoteText = ({sentence, author}) => {
 
     const processUserText = (event) => {
         let input = event.target.value;
+        setIsStarted(true);
+        console.log(isStarted);
+
         // Start the timer once the user starts typing
+        // if (!isStarted) {
+        // }
+
+        // while (isStarted) {
         checkCorrect(input);
+        // }
     };
 
     const checkCorrect = (input) => {
         const charArrayTyped = input.split('');
         const charArray = [...quoteSpan];
         
-        lettersTyped++;
+        // setLettersTyped(lettersTyped + 1);
 
         const charSpan = []
         charArray.forEach((char, index) => {
@@ -42,7 +70,7 @@ const QuoteText = ({sentence, author}) => {
                 charSpan[index] = <span key={index} className="correct">{char.props.children}</span>
                 
             } else {
-                errors++;
+                // errors++;
                 charSpan[index] = <span key={index} className="incorrect">{char.props.children}</span>
                 
             }
@@ -59,6 +87,7 @@ const QuoteText = ({sentence, author}) => {
             </div>
             <textarea placeholder="Click here to start" onChange={(event) => processUserText(event)}>
             </textarea>
+            <span>Words per min: {time / words.length}</span>
         </>
     );
 }
