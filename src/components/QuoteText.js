@@ -69,11 +69,11 @@ const QuoteText = ({sentence, author}) => {
             if (!typeChar) {
                 charSpan[index] = <span key={index} className="default">{char.props.children}</span>
                 
-
             } else if (typeChar === charValue) {
                 charSpan[index] = <span key={index} className="correct">{char.props.children}</span>
                 
             } else {
+                setErrors(errors + 1);
                 charSpan[index] = <span key={index} className="incorrect">{char.props.children}</span>
                 
             }
@@ -86,19 +86,20 @@ const QuoteText = ({sentence, author}) => {
         }
     };
 
-    const startCountdown = () => {
-
-    };
-
     return(
         <>
             <div className="quoteBox">
                 {sentence ? <p>"{quoteSpan}" - {author}</p> : <p>Loading quote...</p>}
             </div>
             <p>{}</p>
-            <textarea placeholder="Click here to start" onClick={startCountdown} onChange={(event) => processUserText(event)}>
+            <textarea disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" onChange={(event) => processUserText(event)}>
             </textarea>
-            {isStarted !== null ? <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]} ms</span> : <></>}
+            {isStarted !== null ? <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]}s</span> : <></>}
+            {isStarted === false ? 
+            <div>
+                <span>Speed: {(words.length / ((time / 1000) / 60)).toString().slice(0, -13)} WPM</span>
+            </div> 
+            : <></>}
         </>
     );
 }
