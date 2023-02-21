@@ -99,6 +99,20 @@ textarea {
     /* text-align: center; */
 }
 
+.refetch {
+    background-color: rgb(80, 80, 80);
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    font-size: 1em;
+}
+
+.clickedRefetch {
+    background-color: rgb(130, 130, 130);
+    cursor: default;
+}
+
+
 span {
 
 }

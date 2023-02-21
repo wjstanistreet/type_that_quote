@@ -17,7 +17,7 @@ const TextContainer = () => {
         fetch("https://api.quotable.io/random")
         .then(response => response.json())
         .then((data) => {setQuote(data)})
-    }, []);
+    }, [games]);
 
     useEffect(() => {
         if (quote) {
@@ -34,7 +34,7 @@ const TextContainer = () => {
                 {quote ? <QuoteText sentence={sentence} author={author} setTime={setTime} isStarted={isStarted} setIsStarted={setIsStarted} errors={errors} setErrors={setErrors}/> : <p>Loading quote...</p>}
             </div>
             {sentence ? <div className="quote-mark"></div> : <></>}
-            <StatsPanel sentence={sentence} isStarted={isStarted} time={time} errors={errors}/>
+            <StatsPanel sentence={sentence} isStarted={isStarted} time={time} errors={errors} games={games} setGames={setGames}/>
         </div>
     )
 }
