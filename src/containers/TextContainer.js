@@ -25,10 +25,11 @@ const TextContainer = () => {
 
     return(
         <div className="page-container">
+            <h1>Type that Quote!</h1>
             <div className="quote-container">
-                <h1>Type that quote!</h1>
                 {quote ? <QuoteText sentence={sentence} author={author}/> : <p>Loading quote...</p>}
             </div>
+            <div className="quote-mark"></div>
         </div>
     )
 }
