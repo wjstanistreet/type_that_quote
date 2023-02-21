@@ -2,15 +2,13 @@ import userEvent from "@testing-library/user-event";
 import { useEffect, useState } from "react";
 import './QuoteText.css'
 
-const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, setErrors}) => {
+const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, setErrors, games, textAreaValue, setTextAreaValue}) => {
 
-    const [words, setWords] = useState("");
     const [quoteChars, setQuoteChars] = useState("");
     const [quoteSpan, setQuoteSpan] = useState("");
 
     useEffect(() => {
         if (sentence) {
-        setWords(sentence.split(' '));
         setQuoteChars(sentence.split(''));
         setQuoteSpan(sentence.split('').map((char, index) => {
             return(
@@ -19,10 +17,6 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
             }));
         }
     }, [sentence])
-
-    
-
-    // const [time, setTime] = useState(0);
 
     useEffect(() => {
         let interval;
@@ -42,15 +36,15 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
 
     const processUserText = (event) => {
         let input = event.target.value;
+        setTextAreaValue(input);
         if (isStarted === null) {
             setIsStarted(true);
-            
         } 
         
         if (isStarted) {
             checkCorrect(input);
         } else {
-            // console.log(isStarted);
+
         }
     };
 
@@ -90,7 +84,8 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
             <div className="quote-box">
                 {sentence ? <p>"{quoteSpan}" - {author}</p> : <p>Loading quote...</p>}
             </div>
-            {sentence ? <textarea disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" onChange={(event) => processUserText(event)}>
+            {sentence ? <textarea   disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" 
+                                    onChange={(event) => processUserText(event)} value={textAreaValue}>
             </textarea> : <></>}
         </>
     );
