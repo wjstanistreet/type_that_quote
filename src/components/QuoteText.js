@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { useEffect, useState } from "react";
 import './QuoteText.css'
 
-const QuoteText = ({sentence, author}) => {
+const QuoteText = ({sentence, author, time, setTime, isStarted, setIsStarted}) => {
 
     const [words, setWords] = useState("");
     const [quoteChars, setQuoteChars] = useState("");
@@ -23,9 +23,7 @@ const QuoteText = ({sentence, author}) => {
     // Accuracy counters
     const [errors, setErrors] = useState(0);
 
-    // Stop watch
-    const [isStarted, setIsStarted] = useState(null);
-    const [time, setTime] = useState(0);
+    // const [time, setTime] = useState(0);
 
     useEffect(() => {
         let interval;
@@ -95,12 +93,6 @@ const QuoteText = ({sentence, author}) => {
             </div>
             {sentence ? <textarea disabled={isStarted === false ? true : false} placeholder="The race starts when you start typing" onChange={(event) => processUserText(event)}>
             </textarea> : <></>}
-            {isStarted !== null ? <span>Time: {time.toString().slice(0, -3)}.{time.toString().slice(-3)[0]}s</span> : <></>}
-            {isStarted === false ? 
-            <div>
-                <span>Speed: {(words.length / ((time / 1000) / 60)).toString().slice(0, -13)} WPM</span>
-            </div> 
-            : <></>}
         </>
     );
 }

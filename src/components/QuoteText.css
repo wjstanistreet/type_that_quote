@@ -36,12 +36,13 @@ html, body {
 
 h1 {
     /* border: 2px solid black; */
+    padding: 0.5em;
+    font-size: 3em;
 }
 
 .quote-container {
     display: flex;
     flex-direction: column;
-    /* border: 2px solid red; */
     background-color: white;
     border-radius: 1em;
     padding: 1em;
@@ -49,16 +50,17 @@ h1 {
 
 .quote-mark {
     content: "";
+    /* max-width: ; */
     width: 0px; 
     height: 0px; 
     position: relative;
     border-left: 30px solid transparent;
     /* border-right: 24px solid red; */
-    border-top: 30px solid white;
+    border-top: 30px solid rgb(255, 255, 255);
     border-bottom: 20px solid transparent; 
-    left: 35%;
-    bottom: 0px;
-    z-index: 1;
+    left: 25%;
+    /* bottom: -45%;  */
+    /* z-index: 1; */
 }
 
 .quote-box {
@@ -73,4 +75,30 @@ textarea {
 .page{
     height: 100%;
     width: 100%;
+}
+
+.stats-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: white;
+    height: 4em;
+    border: 2px solid red;
+    /* justify-content: space-between; */
+    gap: 15px;
+}
+
+.time, .speed {
+    display: grid;
+    place-items: center;
+    background-color: black;
+    border-radius: 15px;
+    height: 4em;
+    width: 9em;
+    padding-left: 1em;
+    padding-right: 1em;
+    /* text-align: center; */
+}
+
+span {
+
 }

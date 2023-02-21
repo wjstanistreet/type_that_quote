@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import QuoteText from "../components/QuoteText";
+import StatsPanel from "../components/StatsPanel";
 
 const TextContainer = () => {
 
@@ -7,6 +8,8 @@ const TextContainer = () => {
     const [sentence, setSentence] = useState("");
     const [author, setAuthor] = useState("");
 
+    const [isStarted, setIsStarted] = useState(null);
+    const [time, setTime] = useState(0);
     const [games, setGames] = useState(0);
 
     useEffect(() => {
@@ -27,9 +30,10 @@ const TextContainer = () => {
         <div className="page-container">
             <h1>Type that Quote!</h1>
             <div className="quote-container">
-                {quote ? <QuoteText sentence={sentence} author={author}/> : <p>Loading quote...</p>}
+                {quote ? <QuoteText sentence={sentence} author={author} time={time} setTime={setTime} isStarted={isStarted} setIsStarted={setIsStarted}/> : <p>Loading quote...</p>}
             </div>
-            <div className="quote-mark"></div>
+            {sentence ? <div className="quote-mark"></div> : <></>}
+            <StatsPanel sentence={sentence} isStarted={isStarted} time={time}/>
         </div>
     )
 }
