@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { useEffect, useState } from "react";
 import './QuoteText.css'
 
-const QuoteText = ({sentence, author, time, setTime, isStarted, setIsStarted}) => {
+const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, setErrors}) => {
 
     const [words, setWords] = useState("");
     const [quoteChars, setQuoteChars] = useState("");
@@ -20,8 +20,7 @@ const QuoteText = ({sentence, author, time, setTime, isStarted, setIsStarted}) =
         }
     }, [sentence])
 
-    // Accuracy counters
-    const [errors, setErrors] = useState(0);
+    
 
     // const [time, setTime] = useState(0);
 

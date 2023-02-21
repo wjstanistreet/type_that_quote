@@ -10,6 +10,7 @@ const TextContainer = () => {
 
     const [isStarted, setIsStarted] = useState(null);
     const [time, setTime] = useState(0);
+    const [errors, setErrors] = useState(0);
     const [games, setGames] = useState(0);
 
     useEffect(() => {
@@ -30,10 +31,10 @@ const TextContainer = () => {
         <div className="page-container">
             <h1>Type that Quote!</h1>
             <div className="quote-container">
-                {quote ? <QuoteText sentence={sentence} author={author} time={time} setTime={setTime} isStarted={isStarted} setIsStarted={setIsStarted}/> : <p>Loading quote...</p>}
+                {quote ? <QuoteText sentence={sentence} author={author} setTime={setTime} isStarted={isStarted} setIsStarted={setIsStarted} errors={errors} setErrors={setErrors}/> : <p>Loading quote...</p>}
             </div>
             {sentence ? <div className="quote-mark"></div> : <></>}
-            <StatsPanel sentence={sentence} isStarted={isStarted} time={time}/>
+            <StatsPanel sentence={sentence} isStarted={isStarted} time={time} errors={errors}/>
         </div>
     )
 }

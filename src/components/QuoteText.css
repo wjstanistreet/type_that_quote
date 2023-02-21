@@ -82,12 +82,12 @@ textarea {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     color: white;
     height: 4em;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     /* justify-content: space-between; */
     gap: 15px;
 }
 
-.time, .speed {
+.time, .speed, .accuracy {
     display: grid;
     place-items: center;
     background-color: black;
