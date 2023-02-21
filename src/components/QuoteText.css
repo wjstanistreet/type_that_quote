@@ -63,10 +63,6 @@ h1 {
     /* z-index: 1; */
 }
 
-.quote-box {
-    /* border: 2px solid cyan; */
-}
-
 textarea {
     border: 2px solid black;
     border-radius: 0.5em;
@@ -110,9 +106,4 @@ textarea {
 .clickedRefetch {
     background-color: rgb(130, 130, 130);
     cursor: default;
-}
-
-
-span {
-
 }

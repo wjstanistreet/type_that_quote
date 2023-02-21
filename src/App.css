@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: rgb(255, 197, 90);
+}
+
+.default {
+  color: black
+}
+
+.correct {
+  color: blue
+}
+
+.incorrect {
+  background-color: red;
+  opacity: 70%;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.page-container {
+  /* border: 2px solid greenyellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  /* border: 2px solid black; */
+  padding: 0.5em;
+  font-size: 3em;
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.quote-mark {
+  content: "";
+  /* max-width: ; */
+  width: 0px; 
+  height: 0px; 
+  position: relative;
+  border-left: 30px solid transparent;
+  /* border-right: 24px solid red; */
+  border-top: 30px solid rgb(255, 255, 255);
+  border-bottom: 20px solid transparent; 
+  left: 25%;
+  /* bottom: -45%;  */
+  /* z-index: 1; */
+}
+
+textarea {
+  border: 2px solid black;
+  border-radius: 0.5em;
+}
+
+.page{
+  height: 100%;
+  width: 100%;
+}
+
+.stats-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: white;
+  height: 4em;
+  /* border: 2px solid red; */
+  /* justify-content: space-between; */
+  gap: 15px;
+}
+
+.time, .speed, .accuracy {
+  display: grid;
+  place-items: center;
+  background-color: black;
+  border-radius: 15px;
+  height: 4em;
+  width: 9em;
+  padding-left: 1em;
+  padding-right: 1em;
+  /* text-align: center; */
+}
+
+.refetch {
+  background-color: rgb(80, 80, 80);
+  cursor: pointer;
+  color: white;
+  border-radius: 15px;
+  font-size: 1em;
+}
+
+.clickedRefetch {
+  background-color: rgb(130, 130, 130);
+  cursor: default;
 }

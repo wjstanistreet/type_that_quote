@@ -4,9 +4,11 @@ import './QuoteText.css'
 
 const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, setErrors, games, textAreaValue, setTextAreaValue}) => {
 
+    // Quote States
     const [quoteChars, setQuoteChars] = useState("");
     const [quoteSpan, setQuoteSpan] = useState("");
 
+    // Set quote states when sentence is loaded
     useEffect(() => {
         if (sentence) {
         setQuoteChars(sentence.split(''));
@@ -18,6 +20,7 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
         }
     }, [sentence])
 
+    // Timer once game starts
     useEffect(() => {
         let interval;
         const checkRate = 100;
@@ -34,6 +37,7 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
     }, [isStarted])
     
 
+    // Processes the typed text
     const processUserText = (event) => {
         let input = event.target.value;
         setTextAreaValue(input);
@@ -48,6 +52,7 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
         }
     };
 
+    // Checks if the text area is correct
     const checkCorrect = (input) => {
         const charArrayTyped = input.split('');
         const typedWords = input.split(' ');

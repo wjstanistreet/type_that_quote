@@ -1,5 +1,6 @@
 const StatsPanel = ({sentence, time, errors, isStarted, games, setGames, setIsStarted, setTime, setErrors, resetTextArea}) => {
 
+    // Reset button click
     const handleClick = () => {
         setGames(games + 1);
         resetTextArea();

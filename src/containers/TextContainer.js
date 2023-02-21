@@ -4,23 +4,28 @@ import StatsPanel from "../components/StatsPanel";
 
 const TextContainer = () => {
 
+    // Quote States
     const [quote, setQuote] = useState("");
     const [sentence, setSentence] = useState("");
     const [author, setAuthor] = useState("");
 
+    // Game States
     const [isStarted, setIsStarted] = useState(null);
     const [time, setTime] = useState(0);
     const [errors, setErrors] = useState(0);
     const [games, setGames] = useState(0);
 
+    // Reset State
     const [textAreaValue, setTextAreaValue] = useState(null);
 
+    // Fetches quote and sets Quote state
     useEffect(() => {
         fetch("https://api.quotable.io/random")
         .then(response => response.json())
         .then((data) => {setQuote(data)})
     }, [games]);
 
+    // Sets sentence and author states when quote is loaded
     useEffect(() => {
         if (quote) {
             setSentence(quote.content);
@@ -28,6 +33,7 @@ const TextContainer = () => {
         }
     }, [quote])
 
+    // Reset text area
     const resetTextArea = () => {
         setTextAreaValue("");
     };
