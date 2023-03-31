@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import { useEffect, useState } from "react";
 import './QuoteText.css'
 
@@ -55,7 +54,6 @@ const QuoteText = ({sentence, author, setTime, isStarted, setIsStarted, errors, 
     // Checks if the text area is correct
     const checkCorrect = (input) => {
         const charArrayTyped = input.split('');
-        const typedWords = input.split(' ');
         const charArray = [...quoteSpan];
 
         const charSpan = []

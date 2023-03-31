@@ -6,7 +6,7 @@ html, body {
   display: flex;
   justify-content: center;
   background-color: rgb(255, 197, 90);
-  font-family: 'Gloock', serif;
+  font-family: 'Roboto';
   font-weight:600;
   letter-spacing: 1px;
 }
@@ -53,23 +53,19 @@ h1 {
 
 .quote-mark {
   content: "";
-  /* max-width: ; */
   width: 0px; 
   height: 0px; 
   position: relative;
   border-left: 30px solid transparent;
-  /* border-right: 24px solid red; */
   border-top: 30px solid rgb(255, 255, 255);
   border-bottom: 20px solid transparent; 
   left: 25%;
-  /* bottom: -45%;  */
-  /* z-index: 1; */
 }
 
 textarea {
   border: 2px solid black;
   border-radius: 0.5em;
-  font-family: 'Gloock', serif;
+  font-family: 'Roboto';
   font-weight: bold;
 }
 
@@ -83,8 +79,6 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   color: white;
   height: 4em;
-  /* border: 2px solid red; */
-  /* justify-content: space-between; */
   gap: 15px;
 }
 
@@ -97,7 +91,6 @@ textarea {
   width: 9em;
   padding-left: 1em;
   padding-right: 1em;
-  /* text-align: center; */
 }
 
 .refetch {
@@ -106,7 +99,7 @@ textarea {
   color: white;
   border-radius: 15px;
   font-size: 1em;
-  font-family: 'Gloock', serif;
+  font-family: 'Roboto';
   font-weight: bold;
 }
 
